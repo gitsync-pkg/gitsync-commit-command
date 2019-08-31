@@ -15,7 +15,7 @@ describe('commit command', () => {
     const source = await createRepo();
     const target = await createRepo();
 
-    await source.addFile('.git-sync.json', JSON.stringify({
+    await source.addFile('.gitsync.json', JSON.stringify({
       repos: [
         {
           dir: 'package-name',
@@ -42,13 +42,13 @@ describe('commit command', () => {
       });
     });
 
-    expect(error).toEqual(new Error('Config file ".git-sync.json" does not exist.'));
+    expect(error).toEqual(new Error('Config file ".gitsync.json" does not exist.'));
   });
 
   test('config dir not found', async () => {
     const source = await createRepo();
 
-    await source.addFile('.git-sync.json', '{}');
+    await source.addFile('.gitsync.json', '{}');
 
     const error = await catchError(async () => {
       await runCommand(commit, source, {
@@ -63,7 +63,7 @@ describe('commit command', () => {
     const source = await createRepo();
     const target = await createRepo();
 
-    await source.addFile('.git-sync.json', JSON.stringify({
+    await source.addFile('.gitsync.json', JSON.stringify({
       repos: [
         {
           dir: 'package-name',
