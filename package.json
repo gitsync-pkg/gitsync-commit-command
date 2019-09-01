@@ -1,6 +1,6 @@
 {
   "name": "@gitsync/commit-command",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Sync the commits from the current repository's subdirectory to another repository",
   "keywords": [
     "gitsync",
@@ -22,7 +22,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@gitsync/config": "^1.0.0",
-    "@gitsync/sync": "^1.0.0"
+    "@gitsync/config": "^0.1.0",
+    "@gitsync/sync": "^0.1.0"
   }
 }
