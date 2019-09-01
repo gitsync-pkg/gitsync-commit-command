@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {createRepo, removeRepos, disableColor, runCommand, catchError} from '../../../packages/sync/__tests__/tester';
+import {createRepo, removeRepos, disableColor, runCommand, catchError} from '@gitsync/test';
 import commit from '../index';
 
 beforeAll(() => {
