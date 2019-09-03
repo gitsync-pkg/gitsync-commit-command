@@ -18,8 +18,8 @@ describe('commit command', () => {
     await source.addFile('.gitsync.json', JSON.stringify({
       repos: [
         {
-          dir: 'package-name',
-          remote: target.dir,
+          paths: 'package-name',
+          repo: target.dir,
         }
       ]
     }));
@@ -56,7 +56,7 @@ describe('commit command', () => {
       });
     });
 
-    expect(error).toEqual(new Error('Directory "package-name" does not exist in config file.'));
+    expect(error).toEqual(new Error('Path "package-name" does not exist in config file.'));
   });
 
   test('repository dir not found', async () => {
@@ -66,8 +66,8 @@ describe('commit command', () => {
     await source.addFile('.gitsync.json', JSON.stringify({
       repos: [
         {
-          dir: 'package-name',
-          remote: target.dir,
+          paths: 'package-name',
+          repo: target.dir,
         }
       ]
     }));

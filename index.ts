@@ -23,7 +23,7 @@ command.builder = {
 
 command.handler = (argv: CommitArguments) => {
   const config = new Config();
-  const target: string = config.getRemoteByDir(argv.dir);
+  const target: string = config.getRepoByPath(argv.dir);
 
   const sync = new Sync();
   return sync.sync({
