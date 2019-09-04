@@ -23,14 +23,14 @@ command.builder = {
 
 command.handler = (argv: CommitArguments) => {
   const config = new Config();
-  const target: string = config.getRepoByPath(argv.dir);
+  const target: string = config.getRepoByDir(argv.dir);
 
   const sync = new Sync();
   return sync.sync({
     $0: '',
     _: [],
     target: target,
-    sourcePath: argv.dir,
+    sourceDir: argv.dir,
   });
 }
 
