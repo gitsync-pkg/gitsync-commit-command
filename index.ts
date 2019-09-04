@@ -3,7 +3,7 @@ import Sync from '@gitsync/sync';
 import {Config} from '@gitsync/config';
 
 interface CommitArguments extends Arguments {
-  dir: string
+  sourceDir: string
 }
 
 let command: CommandModule = {
@@ -11,26 +11,28 @@ let command: CommandModule = {
   }
 };
 
-command.command = 'commit <dir>';
+command.command = 'commit <source-dir>';
 
 command.describe = 'Sync the commits from the current repository\'s subdirectory to another repository';
 
 command.builder = {
-  dir: {
+  sourceDir: {
     describe: 'The subdirectory in current repository',
   }
 };
 
 command.handler = (argv: CommitArguments) => {
   const config = new Config();
-  const target: string = config.getRepoByDir(argv.dir);
+  config.checkFileExist();
+
+  const target: string = config.getRepoByDir(argv.sourceDir);
 
   const sync = new Sync();
   return sync.sync({
     $0: '',
     _: [],
     target: target,
-    sourceDir: argv.dir,
+    sourceDir: argv.sourceDir,
   });
 }
 

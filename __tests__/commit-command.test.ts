@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import {createRepo, removeRepos, disableColor, runCommand, catchError} from '@gitsync/test';
-import commit from '../index';
+import commit from '..';
 
 beforeAll(() => {
   disableColor();
@@ -27,7 +27,7 @@ describe('commit command', () => {
     await source.commitFile('package-name/test.txt');
 
     await runCommand(commit, source, {
-      dir: 'package-name',
+      sourceDir: 'package-name',
     });
 
     expect(fs.existsSync(target.getFile('test.txt'))).toBeTruthy();
@@ -38,7 +38,7 @@ describe('commit command', () => {
 
     const error = await catchError(async () => {
       await runCommand(commit, source, {
-        dir: 'package-name',
+        sourceDir: 'package-name',
       });
     });
 
@@ -52,7 +52,7 @@ describe('commit command', () => {
 
     const error = await catchError(async () => {
       await runCommand(commit, source, {
-        dir: 'package-name',
+        sourceDir: 'package-name',
       });
     });
 
@@ -63,7 +63,7 @@ describe('commit command', () => {
     const source = await createRepo();
     const target = await createRepo();
 
-    await source.addFile('.gitsync.json', JSON.stringify({
+    await source.commitFile('.gitsync.json', JSON.stringify({
       repos: [
         {
           sourceDir: 'package-name',
@@ -74,7 +74,7 @@ describe('commit command', () => {
 
     const error = await catchError(async () => {
       await runCommand(commit, source, {
-        dir: 'package-name',
+        sourceDir: 'package-name',
       });
     });
 
