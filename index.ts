@@ -25,15 +25,13 @@ command.handler = (argv: CommitArguments) => {
   const config = new Config();
   config.checkFileExist();
 
-  const target: string = config.getRepoByDir(argv.sourceDir);
+  const repo = config.getRepoBySourceDir(argv.sourceDir);
 
   const sync = new Sync();
-  return sync.sync({
+  return sync.sync(Object.assign({
     $0: '',
-    _: [],
-    target: target,
-    sourceDir: argv.sourceDir,
-  });
+    _: []
+  }, repo));
 }
 
 export default command;
