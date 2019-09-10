@@ -56,7 +56,7 @@ describe('commit command', () => {
       });
     });
 
-    expect(error).toEqual(new Error('Path "package-name" does not exist in config file.'));
+    expect(error).toEqual(new Error('Source directory "package-name" does not exist in config file.'));
   });
 
   test('repository dir not found', async () => {
