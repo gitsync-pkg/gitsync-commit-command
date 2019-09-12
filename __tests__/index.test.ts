@@ -59,7 +59,7 @@ describe('commit command', () => {
     expect(error).toEqual(new Error('Source directory "package-name" does not exist in config file.'));
   });
 
-  test('repository dir not found', async () => {
+  test('allow repository dir not found', async () => {
     const source = await createRepo();
     const target = await createRepo();
 
@@ -78,7 +78,7 @@ describe('commit command', () => {
       });
     });
 
-    expect(error).toEqual(new Error('Directory "package-name" does not exist in current repository.'));
+    expect(error).toBeUndefined();
   });
 });
 
