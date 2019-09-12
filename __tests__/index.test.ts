@@ -1,10 +1,6 @@
 import * as fs from 'fs';
-import {createRepo, removeRepos, disableColor, runCommand, catchError} from '@gitsync/test';
+import {createRepo, removeRepos, runCommand, catchError} from '@gitsync/test';
 import commit from '..';
-
-beforeAll(() => {
-  disableColor();
-});
 
 afterAll(() => {
   removeRepos();
