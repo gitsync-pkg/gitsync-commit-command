@@ -43,6 +43,11 @@ command.handler = async (argv: CommitArguments) => {
   config.checkFileExist();
 
   if (argv.sourceDir) {
+    // Remove trailing slash, this is useful on OS X and some Linux systems (like CentOS),
+    // because they will automatic add trailing slash when completing a directory name by default
+    if (argv.sourceDir !== '/' && argv.sourceDir.endsWith('/')) {
+      argv.sourceDir = argv.sourceDir.slice(0, -1);
+    }
     argv.include.push(argv.sourceDir);
   }
 
