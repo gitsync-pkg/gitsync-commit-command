@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {createRepo, removeRepos, runCommand, catchError} from '@gitsync/test';
+import {createRepo, removeRepos, logMessage, runCommand, catchError} from '@gitsync/test';
 import commit from '..';
 
 afterAll(() => {
@@ -46,13 +46,11 @@ describe('commit command', () => {
 
     await source.addFile('.gitsync.json', '{}');
 
-    const error = await catchError(async () => {
-      await runCommand(commit, source, {
-        sourceDir: 'package-name',
-      });
+    await runCommand(commit, source, {
+      sourceDir: 'package-name',
     });
 
-    expect(error).toEqual(new Error('Source directory "package-name" does not exist in config file.'));
+    expect(logMessage()).toContain('No directories found after filtering "package-name"');
   });
 
   test('allow repository dir not found', async () => {

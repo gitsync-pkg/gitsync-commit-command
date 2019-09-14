@@ -1,7 +1,7 @@
 {
   "name": "@gitsync/commit-command",
   "version": "0.1.5",
-  "description": "Sync the commits from the current repository's subdirectory to another repository",
+  "description": "Sync current repository subdirectories to relative repositories that defined in the config file",
   "keywords": [
     "gitsync",
     "commit",

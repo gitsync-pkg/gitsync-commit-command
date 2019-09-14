@@ -4,6 +4,8 @@ import {Config} from '@gitsync/config';
 
 interface CommitArguments extends Arguments {
   sourceDir: string
+  include: string[]
+  exclude: string[]
 }
 
 let command: CommandModule = {
@@ -11,27 +13,47 @@ let command: CommandModule = {
   }
 };
 
-command.command = 'commit <source-dir>';
+command.command = 'commit [source-dir]';
 
-command.describe = 'Sync the commits from the current repository\'s subdirectory to another repository';
+command.describe = 'Sync current repository subdirectories to relative repositories that defined in the config file';
 
 command.builder = {
   sourceDir: {
-    describe: 'The subdirectory in current repository',
+    describe: 'Include only source directory matching the given glob, use --include if require multi globs',
+    default: '',
+    type: 'string',
+  },
+  include: {
+    describe: 'Include only source directory matching the given glob',
+    default: [],
+    type: 'array',
+  },
+  exclude: {
+    describe: 'Exclude source directory matching the given glob',
+    default: [],
+    type: 'array',
   }
 };
 
-command.handler = (argv: CommitArguments) => {
+command.handler = async (argv: CommitArguments) => {
+  argv.include || (argv.include = []);
+  argv.exclude || (argv.exclude = []);
+
   const config = new Config();
   config.checkFileExist();
 
-  const repo = config.getRepoBySourceDir(argv.sourceDir);
+  if (argv.sourceDir) {
+    argv.include.push(argv.sourceDir);
+  }
 
-  const sync = new Sync();
-  return sync.sync(Object.assign({
-    $0: '',
-    _: []
-  }, repo));
+  const repos = config.filterReposBySourceDir(argv.include, argv.exclude);
+  for (const repo of repos) {
+    const sync = new Sync();
+    await sync.sync(Object.assign({
+      $0: '',
+      _: []
+    }, repo));
+  }
 }
 
 export default command;
