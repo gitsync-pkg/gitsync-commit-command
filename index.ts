@@ -1,6 +1,7 @@
 import {Arguments, CommandModule} from 'yargs';
 import Sync from '@gitsync/sync';
 import {Config} from '@gitsync/config';
+import log from '@gitsync/log';
 
 interface CommitArguments extends Arguments {
   sourceDir: string
@@ -53,6 +54,7 @@ command.handler = async (argv: CommitArguments) => {
 
   const repos = config.filterReposBySourceDir(argv.include, argv.exclude);
   for (const repo of repos) {
+    log.info(`Commit to ${repo.sourceDir}`);
     const sync = new Sync();
     await sync.sync(Object.assign({
       $0: '',
