@@ -42,7 +42,6 @@
   "ciDependencies": {
     "@gitsync/config": "gitsync-pkg/gitsync-config",
     "@gitsync/sync": "gitsync-pkg/gitsync-sync",
-    "@gitsync/test": "gitsync-pkg/gitsync-test",
-    "git-cli-wrapper": "twinh/git-cli-wrapper"
+    "@gitsync/test": "gitsync-pkg/gitsync-test"
   }
 }
