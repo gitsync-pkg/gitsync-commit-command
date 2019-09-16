@@ -2,7 +2,6 @@ import {Arguments, CommandModule} from 'yargs';
 import Sync from '@gitsync/sync';
 import {Config} from '@gitsync/config';
 import log from '@gitsync/log';
-import theme from 'chalk-theme';
 
 interface CommitArguments extends Arguments {
   sourceDir: string
@@ -55,19 +54,12 @@ command.handler = async (argv: CommitArguments) => {
 
   const repos = config.filterReposBySourceDir(argv.include, argv.exclude);
   for (const repo of repos) {
-    log.info(`Commit to ${theme.info(repo.sourceDir)}`);
-    try {
-      const sync = new Sync();
-      await sync.sync(Object.assign({
-        $0: '',
-        _: []
-      }, repo));
-    } catch (e) {
-      process.exitCode = 1;
-      log.error(`Sync fail: ${e.message}`);
-    }
-
-    log.info('Done!');
+    log.info(`Commit to ${repo.sourceDir}`);
+    const sync = new Sync();
+    await sync.sync(Object.assign({
+      $0: '',
+      _: []
+    }, repo));
   }
 }
 
