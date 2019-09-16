@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "@gitsync/config": "^0.1.5",
-    "@gitsync/sync": "^0.1.5"
+    "@gitsync/sync": "^0.1.5",
+    "chalk-theme": "^0.1.5"
   },
   "devDependencies": {
     "@gitsync/test": "^0.1.4",
@@ -41,8 +42,10 @@
     "typescript": "^3.5.3"
   },
   "ciDependencies": {
-    "@gitsync/config": "gitsync-pkg/gitsync-config#master",
-    "@gitsync/sync": "gitsync-pkg/gitsync-sync#master",
-    "@gitsync/test": "gitsync-pkg/gitsync-test#master"
+    "@gitsync/config": "gitsync-pkg/gitsync-config",
+    "@gitsync/sync": "gitsync-pkg/gitsync-sync",
+    "@gitsync/test": "gitsync-pkg/gitsync-test",
+    "@gitsync/log": "gitsync-pkg/gitsync-log",
+    "chalk-theme": "twinh/chalk-theme"
   }
 }
