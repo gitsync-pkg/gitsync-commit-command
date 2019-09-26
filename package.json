@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "@gitsync/config": "^0.1.5",
-    "@gitsync/sync": "^0.1.5"
+    "@gitsync/sync": "^0.1.5",
+    "chalk-theme": "^0.1.5"
   },
   "devDependencies": {
     "@gitsync/test": "^0.1.4",
@@ -44,6 +45,7 @@
     "@gitsync/config": "gitsync-pkg/gitsync-config",
     "@gitsync/sync": "gitsync-pkg/gitsync-sync",
     "@gitsync/test": "gitsync-pkg/gitsync-test",
-    "@gitsync/log": "gitsync-pkg/gitsync-log"
+    "@gitsync/log": "gitsync-pkg/gitsync-log",
+    "chalk-theme": "twinh/chalk-theme"
   }
 }
