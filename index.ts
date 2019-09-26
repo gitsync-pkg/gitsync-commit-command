@@ -58,10 +58,7 @@ command.handler = async (argv: CommitArguments) => {
     log.info(`Commit to ${theme.info(repo.sourceDir)}`);
     try {
       const sync = new Sync();
-      await sync.sync(Object.assign({
-        $0: '',
-        _: []
-      }, repo));
+      await sync.sync(repo);
     } catch (e) {
       process.exitCode = 1;
       log.error(`Sync fail: ${e.message}`);
