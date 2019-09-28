@@ -1,12 +1,14 @@
 import * as fs from 'fs';
-import {createRepo, removeRepos, logMessage, runCommand, catchError} from '@gitsync/test';
+import {logMessage, runCommand, catchError, RepoManager} from '@gitsync/test';
 import commit from '..';
 
-afterAll(() => {
-  removeRepos();
-});
+const {createRepo, removeRepos} = new RepoManager();
 
 describe('commit command', () => {
+  afterAll(async () => {
+    await removeRepos();
+  });
+
   test('run commit', async () => {
     const source = await createRepo();
     const target = await createRepo();
