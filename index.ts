@@ -8,6 +8,7 @@ interface CommitArguments extends Arguments {
   sourceDir: string
   include: string[]
   exclude: string[]
+  yes?: boolean
 }
 
 let command: CommandModule = {
@@ -34,6 +35,11 @@ command.builder = {
     describe: 'Exclude source directory matching the given glob',
     default: [],
     type: 'array',
+  },
+  yes: {
+    describe: 'Whether to skip confirm or not',
+    alias: 'y',
+    type: 'boolean',
   }
 };
 
@@ -56,6 +62,9 @@ command.handler = async (argv: CommitArguments) => {
   const repos = config.filterReposBySourceDir(argv.include, argv.exclude);
   for (const repo of repos) {
     log.info(`Commit to ${theme.info(repo.sourceDir)}`);
+
+    repo.yes = argv.yes;
+
     try {
       const sync = new Sync();
       await sync.sync(repo);
