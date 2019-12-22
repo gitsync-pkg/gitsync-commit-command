@@ -7,14 +7,17 @@ describe('commit command', () => {
     const source = await createRepo();
     const target = await createRepo();
 
-    await source.addFile('.gitsync.json', JSON.stringify({
-      repos: [
-        {
-          sourceDir: 'package-name',
-          target: target.dir,
-        }
-      ]
-    }));
+    await source.addFile(
+      '.gitsync.json',
+      JSON.stringify({
+        repos: [
+          {
+            sourceDir: 'package-name',
+            target: target.dir,
+          },
+        ],
+      }),
+    );
 
     await source.commitFile('package-name/test.txt');
 
@@ -53,14 +56,17 @@ describe('commit command', () => {
     const source = await createRepo();
     const target = await createRepo();
 
-    await source.commitFile('.gitsync.json', JSON.stringify({
-      repos: [
-        {
-          sourceDir: 'package-name',
-          target: target.dir,
-        }
-      ]
-    }));
+    await source.commitFile(
+      '.gitsync.json',
+      JSON.stringify({
+        repos: [
+          {
+            sourceDir: 'package-name',
+            target: target.dir,
+          },
+        ],
+      }),
+    );
 
     const error = await catchError(async () => {
       await runCommand(commit, source, {
@@ -75,14 +81,17 @@ describe('commit command', () => {
     const source = await createRepo();
     const target = await createRepo();
 
-    await source.addFile('.gitsync.json', JSON.stringify({
-      repos: [
-        {
-          sourceDir: 'package-name',
-          target: target.dir,
-        }
-      ]
-    }));
+    await source.addFile(
+      '.gitsync.json',
+      JSON.stringify({
+        repos: [
+          {
+            sourceDir: 'package-name',
+            target: target.dir,
+          },
+        ],
+      }),
+    );
 
     await source.commitFile('package-name/test.txt');
 
@@ -93,5 +102,3 @@ describe('commit command', () => {
     expect(fs.existsSync(target.getFile('test.txt'))).toBeTruthy();
   });
 });
-
-
