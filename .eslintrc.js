@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     'no-restricted-syntax': ['error', 'ForInStatement'], // Allow for of loops @see https://github.com/airbnb/javascript/issues/1122
     'object-curly-spacing': ['error', 'never'],
+    'import/no-unresolved': ['off'], // Not work when ts file in node_modules
     '@typescript-eslint/explicit-function-return-type': ['off'], // Conflict with no-useless-return
     '@typescript-eslint/no-explicit-any': ["error", {ignoreRestArgs: true}],
   },
