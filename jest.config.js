@@ -7,7 +7,7 @@ module.exports = {
   // https://github.com/kulshekhar/ts-jest/issues/950
   globals: {
     'ts-jest': {
-      isolatedModules: true
+      isolatedModules: true,
     },
   },
 };

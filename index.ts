@@ -5,15 +5,15 @@ import log from '@gitsync/log';
 import theme from 'chalk-theme';
 
 interface CommitArguments extends Arguments {
-  sourceDir: string
-  include: string[]
-  exclude: string[]
-  yes?: boolean
+  sourceDir: string;
+  include: string[];
+  exclude: string[];
+  yes?: boolean;
 }
 
-let command: CommandModule = {
-  handler: () => {
-  }
+const command: CommandModule = {
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  handler: () => {},
 };
 
 command.command = 'commit [source-dir]';
@@ -40,26 +40,27 @@ command.builder = {
     describe: 'Whether to skip confirm or not',
     alias: 'y',
     type: 'boolean',
-  }
+  },
 };
 
 command.handler = async (argv: CommitArguments) => {
-  argv.include || (argv.include = []);
-  argv.exclude || (argv.exclude = []);
+  const include = argv.include || [];
+  const exclude = argv.exclude || [];
+  let {sourceDir} = argv;
 
   const config = new Config();
   config.checkFileExist();
 
-  if (argv.sourceDir) {
+  if (sourceDir) {
     // Remove trailing slash, this is useful on OS X and some Linux systems (like CentOS),
     // because they will automatic add trailing slash when completing a directory name by default
-    if (argv.sourceDir !== '/' && argv.sourceDir.endsWith('/')) {
-      argv.sourceDir = argv.sourceDir.slice(0, -1);
+    if (sourceDir !== '/' && sourceDir.endsWith('/')) {
+      sourceDir = sourceDir.slice(0, -1);
     }
-    argv.include.push(argv.sourceDir);
+    include.push(sourceDir);
   }
 
-  const repos = config.filterReposBySourceDir(argv.include, argv.exclude);
+  const repos = config.filterReposBySourceDir(include, exclude);
   for (const repo of repos) {
     log.info(`Commit to ${theme.info(repo.sourceDir)}`);
 
@@ -67,6 +68,7 @@ command.handler = async (argv: CommitArguments) => {
 
     try {
       const sync = new Sync();
+      /* eslint-disable-next-line no-await-in-loop */
       await sync.sync(repo);
     } catch (e) {
       process.exitCode = 1;
@@ -75,6 +77,6 @@ command.handler = async (argv: CommitArguments) => {
   }
 
   log.info('Done!');
-}
+};
 
 export default command;
