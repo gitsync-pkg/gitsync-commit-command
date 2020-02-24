@@ -1,6 +1,6 @@
 {
   "name": "@gitsync/commit-command",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Sync current repository subdirectories to relative repositories that defined in the config file",
   "keywords": [
     "gitsync",
@@ -29,14 +29,14 @@
     "lint": "eslint '*/**/*.{js,ts}'"
   },
   "dependencies": {
-    "@gitsync/config": "^0.4.0",
+    "@gitsync/config": "^0.5.0",
     "@gitsync/log": "^0.4.0",
-    "@gitsync/sync": "^0.4.0",
-    "chalk-theme": "^0.2.2",
+    "@gitsync/sync": "^0.5.0",
+    "chalk-theme": "^0.2.3",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
-    "@gitsync/test": "^0.4.0",
+    "@gitsync/test": "^0.5.0",
     "@types/jest": "^24.0.18",
     "@typescript-eslint/eslint-plugin": "^2.11.0",
     "@typescript-eslint/parser": "^2.11.0",
