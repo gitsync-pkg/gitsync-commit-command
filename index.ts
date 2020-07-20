@@ -65,6 +65,7 @@ command.handler = async (argv: CommitArguments) => {
     log.info(`Commit to ${theme.info(repo.sourceDir)}`);
 
     repo.yes = argv.yes;
+    repo.plugins = config.getRepoPlugins(repo.plugins);
 
     try {
       const sync = new Sync();
