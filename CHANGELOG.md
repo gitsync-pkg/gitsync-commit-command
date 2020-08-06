@@ -1,9 +1,20 @@
-# [0.6.0](https://github.com/twinh/gitsync/compare/@gitsync/commit-command@0.5.1...@gitsync/commit-command@0.6.0) (2020-07-21)
+## [0.6.1](https://github.com/gitsync-pkg/gitsync-commit-command/compare/v0.6.0...v0.6.1) (2020-08-06)
+
+
+
+
+
+### Dependencies
+
+* **@gitsync/config:** upgrade from 0.6.0 to 0.6.1
+* **@gitsync/sync:** upgrade from 0.6.0 to 0.6.1
+
+# [0.6.0](https://github.com/gitsync-pkg/gitsync-commit-command/compare/v0.5.1...v0.6.0) (2020-07-21)
 
 
 ### Features
 
-* add plugin system ([cfab810](https://github.com/twinh/gitsync/commit/cfab8106437e6f6df4c80d9664c91decd6d89211))
+* add plugin system ([bebfc07](https://github.com/gitsync-pkg/gitsync-commit-command/commit/bebfc071fb903d3df3e78fbabbf3c8f5288589d0))
 
 
 
